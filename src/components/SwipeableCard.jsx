@@ -142,16 +142,6 @@ export const EndCard = ({ cardData, onReset }) => {
         >
           {cardData.leftText}
         </button>
-        {/* Botão opcional (ex: Ver Resultados) */}
-        {cardData.rightText && (
-          <button
-            onClick={onReset} // Pode ter outra função no futuro
-             // Usando cores secundárias definidas no seu index.css ou Tailwind padrão
-            className="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg mt-4 ml-4 transition-colors"
-          >
-            {cardData.rightText}
-          </button>
-        )}
       </div>
     </motion.div>
   );
