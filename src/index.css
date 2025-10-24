@@ -118,3 +118,36 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* Estes estilos são baseados em image_239c88.png 
+    e adaptados para responsividade web.
+  */
+
+  /* Este é o "cardWrapper" do seu código RN */
+  .swipe-card-wrapper {
+    @apply relative flex items-center justify-center;
+    /* Define um tamanho responsivo */
+    width: 90vw;
+    height: 60vh;
+    max-width: 400px;
+    max-height: 600px;
+  }
+
+  /* Este é o "wrapper" principal do seu código RN */
+  .swipe-card {
+    @apply absolute flex items-center justify-center p-6;
+    @apply w-full h-full;
+    @apply rounded-[35px]; /* de 'borderRadius: 35' */
+    @apply overflow-hidden; /* de 'overflow: hidden' */
+    @apply shadow-2xl;
+    /* Impede que o navegador "capture" o gesto de arrastar, 
+       especialmente em dispositivos móveis. */
+    touch-action: none;
+  }
+
+  /* Um contêiner para o conteúdo dentro do card */
+  .card-content {
+    @apply flex flex-col items-center justify-center w-full h-full;
+  }
+}

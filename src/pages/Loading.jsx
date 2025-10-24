@@ -7,7 +7,7 @@ function Loading() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/Module');
+      navigate('/Quiz');
     }, 3000); // 3000 milissegundos = 3 segundos
 
     // Limpa o temporizador se o componente for desmontado antes do tempo
