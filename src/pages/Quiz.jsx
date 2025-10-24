@@ -31,18 +31,20 @@ function Quiz() {
 
   return (
     // Wrapper para centralizar o deck de cards
-    <div className="w-full h-[calc(100vh-150px)] flex flex-col items-center justify-center overflow-hidden">
+    <div className="w-full flex flex-col items-center justify-center overflow-hidden p-4">
       {/* O AnimatePresence é essencial para que a animação de "exit" 
         do SwipeableCard funcione corretamente.
       */}
-      <AnimatePresence>
-        <SwipeableCard
-          key={currentCard.id} // A 'key' é VITAL para o AnimatePresence
-          cardData={currentCard}
-          onSwipe={handleSwipe}
-          onReset={handleReset}
-        />
-      </AnimatePresence>
+      <div className="swipe-card-wrapper">
+        <AnimatePresence>
+          <SwipeableCard
+            key={currentCard.id} // A 'key' é VITAL para o AnimatePresence
+            cardData={currentCard}
+            onSwipe={handleSwipe}
+            onReset={handleReset}
+          />
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
