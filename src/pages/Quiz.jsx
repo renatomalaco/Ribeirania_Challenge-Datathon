@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useGeneratedCards, INITIAL_MONEY } from '@/lib/QuizData'; // Usando o alias @/
-import { SwipeableCard, FeedbackCard, EndCard } from '@/components/SwipeableCard'; // Usando o alias @/
+import { SwipeableCard } from '@/components/SwipeableCard'; // Usando o alias @/
 import { DollarSign } from 'lucide-react';
 
 // Componente para o medidor de dinheiro
@@ -61,7 +61,7 @@ function Quiz() {
 
   // 3. Verificação de vitória/derrota
   useEffect(() => {
-    if (currentCard.isEndCard || feedbackData) return; // Não verifica se já está no fim ou mostrando feedback
+    if (currentCard.isEndCard || feedbackData) return;
 
     if (money >= 100) {
       setCurrentCard(getSpecialCard('win'));
@@ -76,8 +76,8 @@ function Quiz() {
     if (feedbackData || currentCard.isEndCard) return;
 
     const choice = direction === 'right' ? currentCard.onRight : currentCard.onLeft;
-    const explanation = direction === 'right' ? currentCard.rightExplanation : currentCard.leftExplanation;
-    const title = direction === 'right' ? 'Boa escolha!' : 'Má escolha!';
+    const explanation = direction === 'right' ? currentCard.rightExplanation : currentCard.leftExplanation; // Mantém a explicação
+    const title = ''; // Remove "Boa escolha!" e "Má escolha!"
 
     // Atualiza o dinheiro
     if (choice && choice.money) {
@@ -115,21 +115,14 @@ function Quiz() {
       <MoneyMeter value={money} />
       <div className="swipe-card-wrapper">
         <AnimatePresence mode="wait">
-          {feedbackData ? (
-            <FeedbackCard
-              key={feedbackData.id}
-              feedbackData={feedbackData}
-              onContinue={handleFeedbackContinue}
-            />
-          ) : currentCard.isEndCard ? (
-            <EndCard key={currentCard.id} cardData={currentCard} onReset={handleReset} />
-          ) : (
-            <SwipeableCard
-              key={currentCard.id}
-              cardData={currentCard}
-              onSwipe={handleSwipe}
-            />
-          )}
+          <SwipeableCard
+            key={feedbackData ? feedbackData.id : currentCard.id}
+            cardData={currentCard}
+            feedbackData={feedbackData}
+            onSwipe={handleSwipe}
+            onContinue={handleFeedbackContinue}
+            onReset={handleReset}
+          />
         </AnimatePresence>
       </div>
     </div>

@@ -1,43 +1,6 @@
 const cardData = [
   {
     id: 1,
-    question: 'Um jovem com aparência rica pede para dar uma festa em seu reino.',
-    // Exemplo: Negar (vermelho) é ruim, Festejar (verde) é bom
-    leftText: 'Negar a oferta',
-    onLeft: { money: -15, happy: [], sad: ['joker'] },
-    leftExplanation: 'Você perdeu uma grande oportunidade de fazer um aliado poderoso. A cautela excessiva pode custar caro.',
-    rightText: 'Vamos festejar!',
-    onRight: { money: 15, happy: ['joker'], sad: [] },
-    rightExplanation: 'Sua ousadia foi recompensada! O jovem era um príncipe disfarçado e agora é seu aliado. Riscos calculados valem a pena.',
-    image: 'https://img.icons8.com/color/480/joker.png',
-    background: '#E0BBE4',
-  },
-  {
-    id: 2,
-    question: 'O que é "Blockchain"?',
-    leftText: 'Um tipo de jogo',
-    onLeft: { money: -20, happy: [], sad: [] },
-    leftExplanation: 'Incorreto. Blockchain não é um jogo, mas a tecnologia por trás de muitas criptomoedas. Você precisa estudar mais!',
-    rightText: 'Um registro digital',
-    onRight: { money: 20, happy: [], sad: [] },
-    rightExplanation: 'Correto! Blockchain é como um livro-caixa público e imutável que registra transações de forma segura. Excelente!',
-    image: 'https://img.icons8.com/fluency/480/blockchain.png',
-    background: '#A2D2FF',
-  },
-  {
-    id: 3,
-    question: 'O que é "Criptomoeda"?',
-    leftText: 'Dinheiro de brinquedo',
-    onLeft: { money: -25, happy: [], sad: [] },
-    leftExplanation: 'Incorreto. Embora digitais, as criptomoedas têm valor real e são usadas em transações financeiras. Não subestime o futuro!',
-    rightText: 'Moeda digital',
-    onRight: { money: 25, happy: [], sad: [] },
-    rightExplanation: 'Exato! É uma moeda digital ou virtual protegida por criptografia, o que a torna quase impossível de falsificar. Você está no caminho certo!',
-    image: 'https://img.freepik.com/vetores-premium/simbolo-de-criptomoeda-bitcoin-bitcoin-de-moeda-de-ouro-isolado-em-fundo-transparente_279501-2311.jpg',
-    background: '#BDE0FE',
-  },
-  {
-    id: 4,
     question: 'O Prefeito de Ribeirania anuncia que vai regular a RiberCoin (RBC) para "proteger os cidadãos". O mercado entra em pânico.',
     leftText: 'Vender tudo (FUD)',
     onLeft: { money: -30, happy: [], sad: [] },
@@ -49,7 +12,7 @@ const cardData = [
     background: '#D4A373',
   },
   {
-    id: 5,
+    id: 2,
     question: 'O Malandro oferece uma "dica quente": a CapivaraCash (CAP) vai "para a lua" 1000% amanhã. Ele só quer uma pequena taxa pela informação.',
     leftText: 'Recusar a "dica"',
     onLeft: { money: 15, happy: [], sad: ['malandro'] },
@@ -61,7 +24,7 @@ const cardData = [
     background: '#FFCDB2',
   },
   {
-    id: 6,
+    id: 3,
     question: 'O Advogado pergunta: O que é uma "Wallet" (Carteira) de criptomoedas?',
     leftText: 'Uma conta na Corretora',
     onLeft: { money: -10, happy: [], sad: [] },
@@ -73,7 +36,7 @@ const cardData = [
     background: '#BDB2FF',
   },
   {
-    id: 7,
+    id: 4,
     question: 'O Padeiro agora aceita CaféChain (CFE) pelo pãozinho. Isso é um bom sinal para o token?',
     leftText: 'Sim! É adoção no mundo real.',
     onLeft: { money: 20, happy: ['padeiro'], sad: [] },
@@ -85,7 +48,7 @@ const cardData = [
     background: '#FFE5D9',
   },
   {
-    id: 8,
+    id: 5,
     question: 'A Médica está preocupada. "O preço da SolDourado (SOLDO) caiu 30% hoje!" O que é "Volatilidade"?',
     leftText: 'A medida da variação de preço.',
     onLeft: { money: 20, happy: [], sad: [] },
@@ -97,7 +60,7 @@ const cardData = [
     background: '#CAF0F8',
   },
   {
-    id: 9,
+    id: 6,
     question: 'Dona Clotilde recebeu um e-mail pedindo sua "frase de recuperação" (seed phrase) da carteira para "validar sua conta".',
     leftText: 'Ajudá-la a enviar a frase.',
     onLeft: { money: -50, happy: [], sad: ['clotilde'] },
@@ -109,7 +72,7 @@ const cardData = [
     background: '#CED4DA',
   },
   {
-    id: 10,
+    id: 7,
     question: 'O mercado todo está em queda livre. Seu amigo Joe grita: "O que vamos fazer!?"',
     leftText: '"HODL!" (Manter a posição).',
     onLeft: { money: 25, happy: ['joe'], sad: [] },
@@ -121,7 +84,7 @@ const cardData = [
     background: '#E9D8A6',
   },
   {
-    id: 11,
+    id: 8,
     question: 'A Confeiteira quer vender suas receitas como "arte digital única" usando o RioPardo Protocol (RPP). O que é um "NFT"?',
     leftText: 'Um tipo de criptomoeda.',
     onLeft: { money: -15, happy: [], sad: [] },
@@ -135,8 +98,8 @@ const cardData = [
 ];
 
 // Hook para gerenciar os cards
-// Valor inicial do dinheiro (50%)
-export const INITIAL_MONEY = 50;
+// Valor inicial do dinheiro (10%)
+export const INITIAL_MONEY = 10;
 
 export const useGeneratedCards = () => {
   const getCardByIndex = (index) => {

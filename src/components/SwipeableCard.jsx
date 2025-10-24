@@ -13,7 +13,13 @@ const cardSpringConfig = {
 // Limite em pixels para considerar um "swipe"
 const swipeThreshold = 100;
 
-export const SwipeableCard = ({ cardData, onSwipe }) => {
+export const SwipeableCard = ({
+  cardData,
+  onSwipe,
+  onReset,
+  feedbackData,
+  onContinue,
+}) => {
   // 2. Valores reativos (de image_239cc5.png)
   // Substitui `useSharedValue` por `useMotionValue`
   const x = useMotionValue(0);
@@ -54,6 +60,69 @@ export const SwipeableCard = ({ cardData, onSwipe }) => {
     }
   };
 
+  // Se houver dados de feedback, renderiza o FeedbackCard
+  if (feedbackData) {
+    return (
+      <motion.div
+        className="swipe-card" // Reutiliza os estilos base
+        style={{ backgroundColor: feedbackData.background }}
+        initial={{ scale: 0.8, opacity: 0, rotateY: 90 }} // Animação de entrada
+        animate={{ scale: 1, opacity: 1, rotateY: 0 }}
+        exit={{ scale: 0.8, opacity: 0, rotateY: -90 }} // Animação de saída
+        transition={{ duration: 0.4, type: 'spring', damping: 15, stiffness: 100 }}
+      >
+        <div className="card-content text-center">
+          <h2 className="text-2xl font-bold mb-4">{feedbackData.title}</h2>
+          <p className="text-md mb-6 px-4">{feedbackData.explanation}</p>
+          <button
+            onClick={onContinue}
+            className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg"
+          >
+            Continuar
+          </button>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Lógica para o card final
+  if (cardData.isEndCard) {
+    return (
+      <motion.div
+        className="swipe-card"
+        style={{ backgroundColor: cardData.background }}
+        // Animação de entrada para o card final
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="card-content text-center">
+          <img
+            src={cardData.image}
+            alt="End Card"
+            className="w-32 h-32 mx-auto mb-4 pointer-events-none select-none"
+          />
+          <h2 className="text-2xl font-bold mb-6">{cardData.question}</h2>
+          <button
+            onClick={onReset}
+            className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg"
+          >
+            {cardData.leftText}
+          </button>
+          {cardData.rightText && (
+            <button
+              onClick={onReset} // Por enquanto, apenas reseta
+              className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg mt-4"
+            >
+              {cardData.rightText}
+            </button>
+          )}
+        </div>
+      </motion.div>
+    );
+  }
+
   // 6. Renderização (de image_239ce3.png)
   // Substitui <PanGestureHandler> e <Animated.View> por <motion.div>
   return (
@@ -82,7 +151,7 @@ export const SwipeableCard = ({ cardData, onSwipe }) => {
         <img
           src={cardData.image}
           alt={cardData.question}
-          className="w-full h-48 object-contain mb-4 rounded-lg pointer-events-none select-none"
+          className="w-full h-48 object-contain mt-4 rounded-lg pointer-events-none select-none"
         />
 
         {/* Textos que aparecem durante o swipe */}
@@ -98,68 +167,6 @@ export const SwipeableCard = ({ cardData, onSwipe }) => {
         >
           {cardData.leftText}
         </motion.div>
-      </div>
-    </motion.div>
-  );
-};
-
-// Novo componente para o card de feedback
-export const FeedbackCard = ({ feedbackData, onContinue }) => {
-  return (
-    <motion.div
-      className="swipe-card" // Reutiliza os estilos base
-      style={{ backgroundColor: feedbackData.background }}
-      initial={{ scale: 0.8, opacity: 0, rotateY: 90 }} // Animação de entrada
-      animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-      exit={{ scale: 0.8, opacity: 0, rotateY: -90 }} // Animação de saída
-      transition={{ duration: 0.4, type: 'spring', damping: 15, stiffness: 100 }}
-    >
-      <div className="card-content text-center">
-        <h2 className="text-2xl font-bold mb-4">{feedbackData.title}</h2>
-        <p className="text-md mb-6 px-4">{feedbackData.explanation}</p>
-        <button
-          onClick={onContinue}
-          className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg"
-        >
-          Continuar
-        </button>
-      </div>
-    </motion.div>
-  );
-};
-
-// Novo componente para o card de fim de jogo
-export const EndCard = ({ cardData, onReset }) => {
-  return (
-    <motion.div
-      className="swipe-card"
-      style={{ backgroundColor: cardData.background }}
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.8, opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="card-content text-center">
-        <img
-          src={cardData.image}
-          alt="End Card"
-          className="w-32 h-32 mx-auto mb-4 pointer-events-none select-none"
-        />
-        <h2 className="text-2xl font-bold mb-6">{cardData.question}</h2>
-        <button
-          onClick={onReset}
-          className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg"
-        >
-          {cardData.leftText}
-        </button>
-        {cardData.rightText && (
-          <button
-            onClick={onReset} // Por enquanto, apenas reseta
-            className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-semibold shadow-lg mt-4 ml-4"
-          >
-            {cardData.rightText}
-          </button>
-        )}
       </div>
     </motion.div>
   );
