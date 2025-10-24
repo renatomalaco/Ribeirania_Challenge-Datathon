@@ -75,7 +75,7 @@ export const SwipeableCard = ({ cardData, onSwipe, onReset }) => {
           <img
             src={cardData.image}
             alt="End Card"
-            className="w-32 h-32 mx-auto mb-4"
+          className="w-32 h-32 mx-auto mb-4 pointer-events-none select-none"
           />
           <h2 className="text-2xl font-bold mb-6">{cardData.question}</h2>
           <button
@@ -114,7 +114,7 @@ export const SwipeableCard = ({ cardData, onSwipe, onReset }) => {
         <img
           src={cardData.image}
           alt={cardData.question}
-          className="w-full h-48 object-contain mb-4 rounded-lg"
+          className="w-full h-48 object-contain mb-4 rounded-lg pointer-events-none select-none"
         />
         <p className="text-lg font-semibold text-center px-4">
           {cardData.question}

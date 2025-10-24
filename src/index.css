@@ -127,13 +127,15 @@
   /* Este é o "cardWrapper" do seu código RN */
   .swipe-card-wrapper {
     @apply relative flex items-center justify-center;
-    /* Define um tamanho responsivo */
-    margin-top: 100px;
-    margin-bottom: 50px;
+    /* Espaçamento para mobile */
+    margin-top: 2rem; /* 32px */
+    margin-bottom: 2rem; /* 32px */
+    /* Aumenta a margem em telas maiores */
+    @apply sm:mt-16 sm:mb-12;
     width: 90vw; /* Ocupa 90% da largura da tela */
-    height: 55vh; /* Altura um pouco menor */
+    min-height: 450px; /* Garante uma altura mínima em telas pequenas */
     max-width: 350px; /* Largura máxima menor */
-    max-height: 500px; /* Altura máxima menor */
+    max-height: 550px; /* Aumenta um pouco a altura máxima para conteúdo */
   }
 
   /* Este é o "wrapper" principal do seu código RN */

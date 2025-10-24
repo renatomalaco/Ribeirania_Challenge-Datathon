@@ -26,7 +26,7 @@ const cardData = [
     onLeft: { happy: [], sad: [] },
     rightText: 'Moeda digital',
     onRight: { happy: [], sad: [] },
-    image: 'https://img.icons8.com/fluency/480/crypto-portfolio.png',
+    image: 'https://img.freepik.com/vetores-premium/simbolo-de-criptomoeda-bitcoin-bitcoin-de-moeda-de-ouro-isolado-em-fundo-transparente_279501-2311.jpg',
     background: '#BDE0FE',
   },
   // Adicione mais cards aqui...
