@@ -76,14 +76,14 @@ export const SwipeableCard = ({ cardData, onSwipe }) => {
       transition={{ duration: 0.3 }}
     >
       <div className="card-content">
+        <p className="text-lg font-semibold text-center px-4">
+          {cardData.question}
+        </p>
         <img
           src={cardData.image}
           alt={cardData.question}
           className="w-full h-48 object-contain mb-4 rounded-lg pointer-events-none select-none"
         />
-        <p className="text-lg font-semibold text-center px-4">
-          {cardData.question}
-        </p>
 
         {/* Textos que aparecem durante o swipe */}
         <motion.div
